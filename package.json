@@ -1,0 +1,84 @@
+{
+  "name": "frontend",
+  "version": "0.0.0",
+  "main": "main.js",
+  "build": {
+    "appId": "marcobuschini.test.app",
+    "mac": {
+      "category": "your.app.category.type"
+    }
+  },
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "start:electron": "ng build --base-href ./ && cp -R config dist/frontend && electron .",
+    "start:electron:prod": "ng build --prod --base-href ./ && electron .",
+    "build": "ng build",
+    "build:prod": "ng build --prod",
+    "electron:pack": "ng build --base-href ./ && electron-builder  --dir",
+    "electron:dist": "ng build --base-href ./ && electron-builder",
+    "test": "ng test --coverage",
+    "test:ci": "ng test --coverage --coverageReporters lcovonly",
+    "lint": "ng lint",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "e2e": "ng e2e",
+    "e2e:ci": "npx start-server-and-test start http://localhost:4200 cy:run"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "~10.2.1",
+    "@angular/common": "~10.2.1",
+    "@angular/compiler": "~10.2.1",
+    "@angular/core": "~10.2.1",
+    "@angular/forms": "~10.2.1",
+    "@angular/platform-browser": "~10.2.1",
+    "@angular/platform-browser-dynamic": "~10.2.1",
+    "@angular/router": "~10.2.1",
+    "@briebug/cypress-schematic": "^4.4.0",
+    "rxjs": "~6.5.4",
+    "tslib": "^2.0.0",
+    "zone.js": "~0.10.2"
+  },
+  "devDependencies": {
+    "@angular-builders/jest": "^8.3.2",
+    "@angular-devkit/build-angular": "^0.1002.0",
+    "@angular/cli": "^10.2.0",
+    "@angular/compiler-cli": "^10.2.1",
+    "@angular/language-service": "^10.2.1",
+    "@cypress/webpack-preprocessor": "5.9.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.37",
+    "codelyzer": "^6.0.2",
+    "commitizen": "^4.0.4",
+    "coveralls": "^3.1.0",
+    "cypress": "^4.12.1",
+    "cz-conventional-changelog": "^3.1.0",
+    "electron": "^11.5.0",
+    "electron-builder": "^22.9.1",
+    "husky": "^4.2.5",
+    "jest": "^24.9.0",
+    "jest-html-reporter": "^2.8.2",
+    "jest-junit": "^10.0.0",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1",
+    "ts-jest": "^24.3.0",
+    "ts-loader": "7.0.4",
+    "ts-node": "~7.0.0",
+    "tslint": "~6.1.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "~4.0.5"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "pre-commit": "npx pretty-quick --staged && ng lint && ng test",
+      "pre-push": "ng build"
+    }
+  }
+}
