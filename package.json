@@ -17,8 +17,8 @@
     "build:prod": "ng build --prod",
     "electron:pack": "ng build --base-href ./ && electron-builder  --dir",
     "electron:dist": "ng build --base-href ./ && electron-builder",
-    "test": "ng test --coverage",
-    "test:ci": "ng test --coverage --coverageReporters lcovonly",
+    "test": "npx jest --coverage",
+    "test:ci": "npx jest --coverage --coverageReporters lcovonly",
     "lint": "ng lint",
     "cy:open": "cypress open",
     "cy:run": "cypress run",
@@ -76,7 +76,7 @@
   "husky": {
     "hooks": {
       "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-      "pre-commit": "npx pretty-quick --staged && ng lint && npx jest",
+      "pre-commit": "npx pretty-quick --staged && ng lint && npm run test",
       "pre-push": "ng build"
     }
   }
