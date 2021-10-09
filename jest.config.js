@@ -1,7 +1,7 @@
 module.exports = {
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
   verbose: true,
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/', '/test/assets/'],
@@ -27,7 +27,7 @@ module.exports = {
   coverageDirectory: 'tests/coverage',
   roots: ['<rootDir>/src'],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.tsx?$': 'jest-preset-angular',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
 }
