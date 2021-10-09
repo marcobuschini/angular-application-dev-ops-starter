@@ -1,4 +1,7 @@
 module.exports = {
+  preset: 'jest-preset-angular',
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
+  testEnvironment: 'node',
   verbose: true,
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/', '/test/assets/'],
@@ -12,10 +15,11 @@ module.exports = {
       },
     ],
     [
-      'jest-html-reporter',
+      'jest-html-reporters',
       {
         pageTitle: 'Test Report',
-        outputPath: 'tests/results/report.html',
+        filename: 'results.html',
+        publicPath: 'tests/results',
       },
     ],
   ],
