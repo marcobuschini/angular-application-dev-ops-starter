@@ -14,7 +14,7 @@
     "start:electron": "ng build --base-href ./ && cp -R config dist/frontend && electron .",
     "start:electron:prod": "ng build --prod --base-href ./ && electron .",
     "build": "ng build",
-    "build:prod": "ng build --prod",
+    "build:prod": "ng build --configuration production",
     "electron:pack": "ng build --base-href ./ && electron-builder  --dir",
     "electron:dist": "ng build --base-href ./ && electron-builder",
     "test": "npx jest --coverage",
