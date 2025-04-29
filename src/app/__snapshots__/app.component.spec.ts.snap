@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppComponent should render properly (not logged in) 1`] = `
+<div
+  id="root2"
+>
+  Hello frontend!
+
+</div>
+`;

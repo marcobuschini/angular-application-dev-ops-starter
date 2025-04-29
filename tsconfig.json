@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "declaration": false,
+    "experimentalDecorators": true,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "lib": ["es2018", "dom"],
+    "types": ["reflect-metadata", "jest"],
+    "typeRoots": ["./types", "./node_modules/@types"],
+    "paths": {
+      "@stateMachines/*": ["./services/stateMachines/*"],
+      "@authentication/*": ["./services/authentication/*"],
+      "@backend/*": ["./services/backend/*"],
+      "@mock/*": ["./services/mock/*"],
+      "@components/*": ["./app/*"],
+      "@environments/*": ["./environments/*"],
+      "@helper/*": ["./services/helper/*"],
+      "@services/*": ["./services/*"]
+    },
+    "useDefineForClassFields": false
+  },
+  "exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"],
+  "include": ["./src/**/*.tsx", "./src/**/*.ts"],
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}
