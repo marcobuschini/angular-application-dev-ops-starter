@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NgModule } from '@angular/core'
 
 @NgModule({
-  declarations: [AppComponent],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,

@@ -8,13 +8,10 @@ import { NGXLogger } from 'ngx-logger'
 import { NGXLoggerMock } from 'ngx-logger/testing'
 import { APP_CONFIG, AppConfig } from './app-config.module'
 
-const TEST_DIRECTIVES = [AppComponent]
-
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule],
-      declarations: TEST_DIRECTIVES,
+      imports: [NoopAnimationsModule, AppComponent],
       providers: [
         { provide: NGXLogger, useClass: NGXLoggerMock },
         { provide: APP_CONFIG, useClass: AppConfig },
