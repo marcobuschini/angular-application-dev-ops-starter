@@ -1,63 +1,65 @@
-import { TestBed } from '@angular/core/testing'
-import { HttpTestingController } from '@angular/common/http/testing'
+import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { AppComponent } from './app.component'
-
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
-
-import { NGXLogger } from 'ngx-logger'
-import { NGXLoggerMock } from 'ngx-logger/testing'
-import { APP_CONFIG, AppConfig } from './app-config.module'
-import { DebugElement } from '@angular/core'
-import { By } from '@angular/platform-browser'
 
 import { expect, jest } from '@jest/globals'
 
+import { HarnessLoader } from '@angular/cdk/testing'
+import { MatButtonHarness } from '@angular/material/button/testing'
+import { MatCardHarness } from '@angular/material/card/testing'
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
+import { MatButtonModule } from '@angular/material/button'
+import { MatCardModule } from '@angular/material/card'
+
 describe('AppComponent', () => {
+  let fixture: ComponentFixture<AppComponent>
+  let component: AppComponent
+  let loader: HarnessLoader
+
   beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [NoopAnimationsModule, AppComponent],
-      providers: [
-        { provide: NGXLogger, useClass: NGXLoggerMock },
-        { provide: APP_CONFIG, useClass: AppConfig },
-        HttpTestingController,
-      ],
-    }).compileComponents()
-    TestBed.inject(HttpTestingController)
+    TestBed.configureTestingModule({
+      imports: [AppComponent, MatButtonModule, MatCardModule],
+    })
+    fixture = TestBed.createComponent(AppComponent)
+    fixture.detectChanges()
+    component = fixture.componentInstance
+    loader = TestbedHarnessEnvironment.loader(fixture)
   })
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent)
-    const app = fixture.componentInstance
-    expect(app).toBeTruthy()
+    expect(component).toBeDefined()
   })
 
-  it('should have as title "frontend"', () => {
-    const fixture = TestBed.createComponent(AppComponent)
-    const app = fixture.componentInstance
-    expect(app.title).toEqual('frontend')
+  it('should have as title "frontend"', async () => {
+    await expect(component.title).toEqual('frontend')
   })
 
-  it('should render properly', () => {
-    const fixture = TestBed.createComponent(AppComponent)
-    fixture.detectChanges()
-    const compiled = fixture.nativeElement
-    expect(compiled).toMatchSnapshot()
+  it('should render properly', async () => {
+    const mainCard: MatCardHarness = await loader.getHarness(MatCardHarness)
+    await expect(mainCard.getTitleText()).resolves.toEqual(
+      'Welcome, developers!'
+    )
+    await expect(mainCard.getText()).resolves.toContain(
+      "Hi, I'm here to help you live memorable experiences!"
+    )
   })
 
-  it('should display the OK snackbar', () => {
-    const fixture = TestBed.createComponent(AppComponent)
-    const debug: DebugElement = fixture.debugElement
-    const buttonsDev = debug.query(By.css('button'))
-    const okButton: HTMLButtonElement = buttonsDev.children[0].nativeElement
-    const cancelButton: HTMLButtonElement = buttonsDev.children[1].nativeElement
-
-    const component = fixture.componentInstance
+  it('should display the OK snackbar', async () => {
+    const okButton: MatButtonHarness = await loader.getHarness(
+      MatButtonHarness.with({ text: 'Ok' })
+    )
     const snackbarSpy = jest.spyOn(component.snackbar, 'open')
 
-    okButton.click()
-    expect(snackbarSpy).toHaveBeenCalledTimes(1)
+    await okButton.click()
+    await expect(snackbarSpy).toHaveBeenCalledTimes(1)
+  })
 
-    cancelButton.click()
-    expect(snackbarSpy).toHaveBeenCalledTimes(2)
+  it('should display the Cancel snackbar', async () => {
+    const cancelButton: MatButtonHarness = await loader.getHarness(
+      MatButtonHarness.with({ text: 'Cancel' })
+    )
+    const snackbarSpy = jest.spyOn(component.snackbar, 'open')
+
+    await cancelButton.click()
+    await expect(snackbarSpy).toHaveBeenCalledTimes(1)
   })
 })

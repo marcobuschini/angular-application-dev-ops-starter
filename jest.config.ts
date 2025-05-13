@@ -1,7 +1,7 @@
 export default {
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-  testEnvironment: 'jsdom',
+  testEnvironment: '@happy-dom/jest-environment',
   verbose: true,
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/', '/test/assets/'],

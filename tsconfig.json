@@ -12,7 +12,7 @@
     "noImplicitAny": true,
     "importHelpers": true,
     "target": "ES2022",
-    "lib": ["es2018", "dom"],
+    "lib": ["es2022", "dom"],
     "types": ["reflect-metadata", "jest"],
     "typeRoots": ["./types", "./node_modules/@types"],
     "paths": {
