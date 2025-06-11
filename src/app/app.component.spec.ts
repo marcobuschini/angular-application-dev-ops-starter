@@ -59,7 +59,7 @@ describe('AppComponent', () => {
     await expect(snackbarSpy).toHaveBeenCalledTimes(1)
   })
 
-  xit('should display the Cancel snackbar', async () => {
+  it('should display the Cancel snackbar', async () => {
     const cancelButton: MatButtonHarness = await loader.getHarness(
       MatButtonHarness.with({ text: 'Cancel' })
     )
