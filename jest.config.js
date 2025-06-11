@@ -1,7 +1,7 @@
-export default {
+module.exports = {
   preset: 'jest-preset-angular',
   setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
-  testEnvironment: '@happy-dom/jest-environment',
+  testEnvironment: 'jsdom',
   verbose: true,
   collectCoverage: true,
   coveragePathIgnorePatterns: ['/node_modules/', '/test/assets/'],
@@ -26,16 +26,26 @@ export default {
   coverageReporters: ['lcovonly', 'html', 'text'],
   coverageDirectory: 'tests/coverage',
   roots: ['<rootDir>/src'],
-  globals: {
-    'ts-jest': {
-      tsconfig: '<rootDir>/tsconfig.spec.json',
-      stringifyContentPathRegex: '\\.(html|svg)$',
-    },
-  },
   transform: {
     //'^.+\\.tsx?$': 'jest-preset-angular',
-    '^.+\\.(ts|js|html|svg)$': 'jest-preset-angular',
+    '^.+\\.(ts|tsx|js|jsx|html|svg)$': [
+      'jest-preset-angular',
+      {
+        tsconfig: '<rootDir>/tsconfig.spec.json',
+        stringifyContentPathRegex: '\\.(html|svg)$',
+      },
+    ],
   },
   transformIgnorePatterns: ['node_modules/(?!@ngrx|(?!deck.gl)|ng-dynamic)'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node', 'svg'],
+  moduleFileExtensions: [
+    'ts',
+    'tsx',
+    'js',
+    'jsx',
+    'json',
+    'html',
+    'mjs',
+    'node',
+    'svg',
+  ],
 }

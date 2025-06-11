@@ -9,6 +9,7 @@ import { MatCardHarness } from '@angular/material/card/testing'
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed'
 import { MatButtonModule } from '@angular/material/button'
 import { MatCardModule } from '@angular/material/card'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>
@@ -17,7 +18,12 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
-      imports: [AppComponent, MatButtonModule, MatCardModule],
+      imports: [
+        AppComponent,
+        MatButtonModule,
+        MatCardModule,
+        MatSnackBarModule,
+      ],
     })
     fixture = TestBed.createComponent(AppComponent)
     fixture.detectChanges()
@@ -44,10 +50,10 @@ describe('AppComponent', () => {
   })
 
   it('should display the OK snackbar', async () => {
+    const snackbarSpy = jest.spyOn(component.snackbar, 'open')
     const okButton: MatButtonHarness = await loader.getHarness(
       MatButtonHarness.with({ text: 'Ok' })
     )
-    const snackbarSpy = jest.spyOn(component.snackbar, 'open')
 
     await okButton.click()
     await expect(snackbarSpy).toHaveBeenCalledTimes(1)
