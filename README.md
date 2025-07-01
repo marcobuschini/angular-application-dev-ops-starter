@@ -1,6 +1,6 @@
 [![Unit Testing](https://github.com/marcobuschini/travelers-handbook/actions/workflows/unittest.yml/badge.svg)](https://github.com/marcobuschini/travelers-handbook/actions/workflows/unittest.yml)
 [![Building](https://github.com/marcobuschini/travelers-handbook/actions/workflows/build.yml/badge.svg)](https://github.com/marcobuschini/travelers-handbook/actions/workflows/build.yml)
-[![Coverage Status](https://coveralls.io/repos/github/marcobuschini/travelers-handbook/badge.svg)](https://coveralls.io/github/marcobuschini/travelers-handbook)
+[![Coverage Status](https://coveralls.io/repos/github/marcobuschini/angular-application-dev-ops-starter/badge.svg)](https://coveralls.io/github/marcobuschini/angular-application-dev-ops-starter)
 [![Maintainability](https://api.codeclimate.com/v1/badges/ce6cea7663a43a39801a/maintainability)](https://codeclimate.com/repos/6248d00f2cd82b0163000001/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ce6cea7663a43a39801a/test_coverage)](https://codeclimate.com/repos/6248d00f2cd82b0163000001/test_coverage)
 [![Commitizen Friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen)](http://commitizen.github.io/cz-cli/)
