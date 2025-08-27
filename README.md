@@ -37,4 +37,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Electron
 
-Instructions used to install Electron come from https://www.sitepoint.com/build-a-desktop-application-with-electron-and-angular/
+Instructions used to install Electron come from [here](https://www.sitepoint.com/build-a-desktop-application-with-electron-and-angular/)
