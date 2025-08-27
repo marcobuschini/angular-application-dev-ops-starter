@@ -60,10 +60,10 @@ describe('AppComponent', () => {
   })
 
   it('should display the Cancel snackbar', async () => {
+    const snackbarSpy = jest.spyOn(component.snackbar, 'open')
     const cancelButton: MatButtonHarness = await loader.getHarness(
       MatButtonHarness.with({ text: 'Cancel' })
     )
-    const snackbarSpy = jest.spyOn(component.snackbar, 'open')
 
     await cancelButton.click()
     await expect(snackbarSpy).toHaveBeenCalledTimes(1)

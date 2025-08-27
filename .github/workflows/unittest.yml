@@ -25,8 +25,13 @@ jobs:
       - run: mkdir coverage
       - run: mv tests/coverage/lcov.info coverage/lcov.info
       - run: ./cc-test-reporter after-build -t lcov
-      #- name: Upload Coveralls statistics
-      #  uses: coverallsapp/github-action@master
-      #  with:
-      #    github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Coveralls statistics
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Qlty statistics
+        uses: qltysh/qlty-action/coverage@v2
+        with:
+          token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
+          files: coverage/lcov.info
       - run: echo "🍏 This job's status is ${{ job.status }}."
