@@ -1,4 +1,4 @@
-npx pretty-quick --staged && \
+pretty-quick --staged && \
 ng lint && \
 qlty check --all && \
 qlty smells --all && \

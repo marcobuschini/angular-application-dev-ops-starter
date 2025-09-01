@@ -16,15 +16,11 @@
     "postinstall": "npx husky install",
     "ng": "npx ng",
     "start": "npx ng serve",
-    "start:electron": "npx ng build --base-href ./ && cp -R config dist/frontend && electron .",
-    "start:electron:prod": "npx ng build --prod --base-href ./ && electron .",
     "build": "npx ng build",
     "build:prod": "npx ng build --configuration production",
-    "electron:pack": "npx ng build --base-href ./ && electron-builder  --dir",
-    "electron:dist": "npx ng build --base-href ./ && electron-builder",
     "test": "npx jest --coverage",
     "test:ci": "npx jest --coverage --coverageReporters lcovonly",
-    "lint": "npx ng lint",
+    "lint": "npx ng lint && qlty check --all && qlty smells --all && qlty metrics --all",
     "cy:open": "npx cypress open",
     "cy:run": "npx cypress run",
     "e2e": "npx ng e2e",
@@ -42,10 +38,7 @@
     "@angular/platform-browser": "^20.0.2",
     "@angular/platform-browser-dynamic": "^20.0.2",
     "@angular/router": "^20.0.2",
-    "@ngx-translate/core": "^16.0.4",
-    "@ngx-translate/http-loader": "^16.0.1",
     "ngx-logger": "^5.0.12",
-    "ngx-translate-messageformat-compiler": "^7.1.0",
     "rxjs": "~7.8.2",
     "tslib": "^2.8.1",
     "zone.js": "^0.15.0"
@@ -96,13 +89,6 @@
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
-      "pre-commit": "npx pretty-quick --staged && ng lint && npm run test",
-      "pre-push": "npm run build:prod"
     }
   }
 }
