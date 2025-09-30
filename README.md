@@ -35,6 +35,6 @@ Run `npm run cy:open` to open the interactive Cypress dashboard or `npm run cy:r
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-## Electron
+## Tauri
 
-Instructions used to install Electron come from [here](https://www.sitepoint.com/build-a-desktop-application-with-electron-and-angular/)
+Tauri is a tool to "create small, fast, secure, cross-platform applications". You can fund nire detail about Tauri on [their website](https://tauri.app/).
