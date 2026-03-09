@@ -127,6 +127,13 @@
               "devServerTarget": "frontend:serve:production"
             }
           }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "buildTarget": "frontend:build",
+            "tsConfig": "tsconfig.spec.json"
+          }
         }
       }
     }

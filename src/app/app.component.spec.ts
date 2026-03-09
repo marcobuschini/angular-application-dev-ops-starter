@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 import { AppComponent } from './app.component'
 
-import { expect, jest } from '@jest/globals'
+import { describe, beforeEach, expect, it, vi } from 'vitest'
 
 import { HarnessLoader } from '@angular/cdk/testing'
 import { MatButtonHarness } from '@angular/material/button/testing'
@@ -26,46 +26,39 @@ describe('AppComponent', () => {
       ],
     })
     fixture = TestBed.createComponent(AppComponent)
-    fixture.detectChanges()
     component = fixture.componentInstance
     loader = TestbedHarnessEnvironment.loader(fixture)
+    fixture.detectChanges()
   })
 
   it('should create the app', () => {
     expect(component).toBeDefined()
   })
 
-  it('should have as title "frontend"', async () => {
-    await expect(component.title).toEqual('frontend')
+  it('should have the title "frontend"', () => {
+    expect(component.title).toEqual('frontend')
   })
 
-  it('should render properly', async () => {
-    const mainCard: MatCardHarness = await loader.getHarness(MatCardHarness)
-    await expect(mainCard.getTitleText()).resolves.toEqual(
-      'Welcome, developers!'
-    )
-    await expect(mainCard.getText()).resolves.toContain(
+  it('should render the main card content properly', async () => {
+    const mainCard = await loader.getHarness(MatCardHarness)
+    expect(await mainCard.getTitleText()).toEqual('Welcome, developers!')
+    expect(await mainCard.getText()).toContain(
       "Hi, I'm here to help you live memorable experiences!"
     )
   })
 
-  it('should display the OK snackbar', async () => {
-    const snackbarSpy = jest.spyOn(component.snackbar, 'open')
-    const okButton: MatButtonHarness = await loader.getHarness(
-      MatButtonHarness.with({ text: 'Ok' })
+  describe('action buttons', () => {
+    it.each([{ buttonText: 'Ok' }, { buttonText: 'Cancel' }])(
+      'should display a snackbar when the "$buttonText" button is clicked',
+      async ({ buttonText }) => {
+        const snackbarSpy = vi.spyOn(component.snackbar, 'open')
+        const button = await loader.getHarness(
+          MatButtonHarness.with({ text: buttonText })
+        )
+
+        await button.click()
+        expect(snackbarSpy).toHaveBeenCalledTimes(1)
+      }
     )
-
-    await okButton.click()
-    await expect(snackbarSpy).toHaveBeenCalledTimes(1)
-  })
-
-  it('should display the Cancel snackbar', async () => {
-    const snackbarSpy = jest.spyOn(component.snackbar, 'open')
-    const cancelButton: MatButtonHarness = await loader.getHarness(
-      MatButtonHarness.with({ text: 'Cancel' })
-    )
-
-    await cancelButton.click()
-    await expect(snackbarSpy).toHaveBeenCalledTimes(1)
   })
 })

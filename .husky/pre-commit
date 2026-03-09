@@ -3,4 +3,4 @@ ng lint && \
 qlty check --all && \
 qlty smells --all && \
 qlty metrics --all && \
-npm run test
+ng test --no-watch
