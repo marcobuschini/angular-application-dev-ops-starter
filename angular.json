@@ -132,7 +132,9 @@
           "builder": "@angular/build:unit-test",
           "options": {
             "buildTarget": "frontend:build",
-            "tsConfig": "tsconfig.spec.json"
+            "tsConfig": "tsconfig.spec.json",
+            "coverage": true,
+            "coverageReporters": ["lcov", "text-summary"]
           }
         }
       }

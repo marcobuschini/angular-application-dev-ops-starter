@@ -26,5 +26,5 @@ jobs:
         uses: qltysh/qlty-action/coverage@v2
         with:
           token: ${{ secrets.QLTY_COVERAGE_TOKEN }}
-          files: coverage/lcov.info
+          files: coverage/frontend/lcov.info
       - run: echo "🍏 This job's status is ${{ job.status }}."
