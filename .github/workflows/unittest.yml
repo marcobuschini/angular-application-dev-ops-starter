@@ -17,7 +17,7 @@ jobs:
           node-version: '22'
       - run: npm install
       - run: npm run test:ci
-      - run: mv tests/coverage/frontend/lcov.info coverage/lcov.info
+      - run: mv coverage/frontend/lcov.info coverage/lcov.info
       - name: Upload Coveralls statistics
         uses: coverallsapp/github-action@master
         with:
